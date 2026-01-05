@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionWrapper } from "../components/SectionWrapper";
-import { GALLERY_DATA } from "../assets/galleryData";
 import { GalleryCategory } from "../types";
+import { GALLERY_DATA } from "../assets/gallery";
 
 const CATEGORIES: (GalleryCategory | "All")[] = [
   "All",

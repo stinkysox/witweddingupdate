@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router, // Changed from HashRouter to BrowserRouter
   Routes,
   Route,
   useLocation,
