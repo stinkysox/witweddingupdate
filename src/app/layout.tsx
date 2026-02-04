@@ -16,19 +16,27 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://weddingwit.vercel.app'),
   title: "Weddingwit | Luxury Wedding Storytelling",
   description: "Weddingwit | Luxury Wedding Photography & Cinematic Storytelling in Hyderabad. Capturing timeless wedding moments with artistic elegance globally.",
   keywords: "wedding photography Hyderabad, luxury wedding photographer, cinematic wedding films, destination wedding photographer India, premium wedding stories",
   authors: [{ name: "Weddingwit Artistry Archive" }],
   robots: "index, follow",
   alternates: {
-    canonical: "https://weddingwit.com",
+    canonical: "https://weddingwit.vercel.app",
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  themeColor: '#EAB308',
+  manifest: '/manifest.json',
   openGraph: {
     title: "Weddingwit | Luxury Wedding Storytelling",
     description: "Weddingwit captures your luxury wedding moments with artistic storytelling and premium photography in Hyderabad and globally.",
     type: "website",
-    url: "https://weddingwit.com",
+    url: "https://weddingwit.vercel.app",
     siteName: "Weddingwit",
     images: [
       {
@@ -60,8 +68,8 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     "name": "Weddingwit",
     "image": "https://i.pinimg.com/736x/a9/9a/d5/a99ad5c52f71c7d54a4d21d724d2e079.jpg",
-    "@id": "https://weddingwit.com",
-    "url": "https://weddingwit.com",
+    "@id": "https://weddingwit.vercel.app",
+    "url": "https://weddingwit.vercel.app",
     "telephone": "+914045678910",
     "address": {
       "@type": "PostalAddress",

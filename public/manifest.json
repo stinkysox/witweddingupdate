@@ -1,0 +1,36 @@
+{
+  "name": "Weddingwit - Luxury Wedding Storytelling",
+  "short_name": "Weddingwit",
+  "description": "Luxury Wedding Photography & Cinematic Storytelling in Hyderabad. Capturing timeless wedding moments with artistic elegance globally.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#EAB308",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://i.pinimg.com/736x/ad/42/2d/ad422d9d993dfb6697b437b06dcd0cb3.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.pinimg.com/736x/ad/42/2d/ad422d9d993dfb6697b437b06dcd0cb3.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["photography", "wedding", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "https://i.pinimg.com/736x/a9/9a/d5/a99ad5c52f71c7d54a4d21d724d2e079.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ]
+}
