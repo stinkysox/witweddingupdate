@@ -61,7 +61,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-9xl font-serif text-[#1A1A1A] dark:text-white mb-8 tracking-tighter leading-none"
+            className="text-3xl sm:text-5xl md:text-9xl font-serif text-[#1A1A1A] dark:text-white mb-8 tracking-tighter leading-[1.1] md:leading-none"
           >
             Capturing the <br />
             <span className="italic text-yellow-600 dark:text-yellow-500">
@@ -74,7 +74,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1.5 }}
-            className="text-gray-500 dark:text-white/60 text-xs md:text-sm uppercase tracking-[0.5em] mb-12 font-light"
+            className="text-gray-500 dark:text-white/60 text-[10px] md:text-sm uppercase tracking-[0.3em] md:tracking-[0.5em] mb-12 font-light px-4"
           >
             Luxury Wedding Cinematography & Photography
           </motion.p>
@@ -141,10 +141,12 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Bubble Scroll Section (Replaces Bento Grid) */}
-      <BubbleScroll />
+      <div className="relative z-10">
+        <BubbleScroll />
+      </div>
 
       {/* Featured Gallery */}
-      <section className="py-32 bg-gray-50 dark:bg-[#0A0A0A] rounded-[4rem] mx-4">
+      <section className="py-32 bg-gray-50 dark:bg-[#0A0A0A] rounded-[4rem] mx-4 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <SectionWrapper direction="up" className="text-center mb-24">
             <h2 className="text-5xl md:text-7xl font-serif mb-6 text-[#1A1A1A] dark:text-white">
@@ -193,7 +195,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Why Us Cards */}
-      <section className="py-40 px-6 bg-white dark:bg-black">
+      <section className="py-40 px-6 bg-white dark:bg-black overflow-hidden">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
           {[
             {
@@ -229,7 +231,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA */}
-      <section className="pb-40 px-6 bg-white dark:bg-black">
+      <section className="pb-40 px-6 bg-white dark:bg-black overflow-hidden">
         <SectionWrapper
           direction="up"
           className="max-w-6xl mx-auto glass rounded-[5rem] p-12 md:p-24 border border-yellow-600/20 relative overflow-hidden shadow-2xl flex flex-col items-center text-center"
