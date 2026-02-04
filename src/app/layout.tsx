@@ -48,6 +48,7 @@ export const metadata: Metadata = {
 };
 
 import { CustomCursor } from "../components/CustomCursor";
+import { CookieConsent } from "../components/CookieConsent";
 
 export default function RootLayout({
   children,
@@ -115,6 +116,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <CookieConsent />
       </body>
     </html>
   );
