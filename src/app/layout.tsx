@@ -47,6 +47,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { CustomCursor } from "../components/CustomCursor";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -104,6 +106,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased selection:bg-yellow-600/30 font-sans`}
       >
+        <CustomCursor />
         <div className="flex flex-col min-h-screen relative">
           <Navbar />
           <main className="flex-grow">

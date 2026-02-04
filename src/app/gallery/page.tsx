@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GALLERY_DATA } from "@/data/gallery";
+import Image from "next/image";
 
 const CATEGORIES = [
   "All",
@@ -94,26 +95,24 @@ export default function Gallery() {
                         onMouseLeave={() => setActiveId(null)}
                       >
                         <div className={`absolute inset-0 shimmer transition-opacity duration-500 ${isLoaded ? 'opacity-0' : 'opacity-100'}`} />
-                        <motion.img
-                          src={item.imageUrl}
-                          alt={item.title}
-                          animate={{
-                            scale: isActive ? 1.1 : 1,
-                            filter: isActive
-                              ? "brightness(0.3) blur(6px)"
-                              : "brightness(1) blur(0px)",
-                          }}
-                          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
-                          className={`w-full object-cover transition-opacity duration-1000 ${
-                            isLoaded ? "opacity-100" : "opacity-0"
-                          }`}
-                          onLoad={() =>
-                            setLoadedImages((prev) => ({
-                              ...prev,
-                              [item.id]: true,
-                            }))
-                          }
-                        />
+                        <div className={`relative w-full aspect-[4/5] md:aspect-auto ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000`}>
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            priority={GALLERY_DATA.indexOf(item) < 4}
+                            className={`object-cover transition-all duration-1000 ${
+                              isActive ? "brightness-[0.3] blur-[6px] scale-110" : "brightness-100 blur-0 scale-100"
+                            }`}
+                            onLoad={() =>
+                              setLoadedImages((prev) => ({
+                                ...prev,
+                                [item.id]: true,
+                              }))
+                            }
+                          />
+                        </div>
 
                         <motion.div
                           initial={false}

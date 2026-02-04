@@ -5,6 +5,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { BubbleScroll } from "../components/BubbleScroll";
+import { MagneticButton } from "../components/MagneticButton";
+import { HorizontalGallery } from "../components/HorizontalGallery";
+import Image from "next/image";
 
 const AuroraBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-60 dark:opacity-40">
@@ -26,18 +29,21 @@ const FEATURED_SHOTS = [
     id: "1",
     url: "https://i.pinimg.com/736x/27/91/56/2791561897980a13a1d81eaee23db512.jpg",
     title: "Eternal Vows",
+    category: "Wedding",
     date: "2023",
   },
   {
     id: "2",
     url: "https://i.pinimg.com/1200x/3a/d2/cf/3ad2cf6a4a6791043e3ad2905ccb4f26.jpg",
     title: "The Golden Hour",
+    category: "Pre-Wedding",
     date: "2024",
   },
   {
     id: "3",
     url: "https://i.pinimg.com/736x/31/68/b8/3168b8366b5fdc168b262603d2018024.jpg",
     title: "Minimal Elegance",
+    category: "Maternity",
     date: "2023",
   },
 ];
@@ -83,12 +89,14 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.4, duration: 1 }}
           >
-            <Link
-              href="/gallery"
-              className="inline-block px-12 py-5 glass dark:text-white text-[#1A1A1A] rounded-full uppercase tracking-[0.2em] hover:bg-black/5 dark:hover:bg-white/10 transition-all text-[10px] font-bold glow-button border border-black/10 dark:border-white/10 shadow-lg"
-            >
-              Explore Portfolio
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/gallery"
+                className="inline-block px-12 py-5 glass dark:text-white text-[#1A1A1A] rounded-full uppercase tracking-[0.2em] hover:bg-black/5 dark:hover:bg-white/10 transition-all text-[10px] font-bold glow-button border border-black/10 dark:border-white/10 shadow-lg magnetic-target"
+              >
+                Explore Portfolio
+              </Link>
+            </MagneticButton>
           </motion.div>
         </motion.div>
 
@@ -128,10 +136,12 @@ export default function Home() {
 
           <SectionWrapper direction="right" delay={0.2}>
             <div className="aspect-[4/5] overflow-hidden rounded-[3rem] relative shadow-2xl bg-zinc-900">
-              <img
+              <Image
                 src="https://i.pinimg.com/1200x/50/36/08/50360859203a51e5de8e30e934ab856d.jpg"
                 alt="Brand Intro"
-                className="w-full h-full object-cover transition-transform duration-[2s] hover:scale-110"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-[2s] hover:scale-110"
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/10 rounded-[3rem]"></div>
             </div>
@@ -144,8 +154,8 @@ export default function Home() {
         <BubbleScroll />
       </div>
 
-      {/* Featured Gallery */}
-      <section className="py-32 bg-[#0A0A0A] rounded-[4rem] mx-4 overflow-hidden">
+      {/* Featured Gallery (Horizontal) */}
+      <section className="py-32 bg-[#0A0A0A] rounded-t-[4rem] mx-4 mb-0">
         <div className="max-w-7xl mx-auto px-6">
           <SectionWrapper direction="up" className="text-center mb-24">
             <h2 className="text-5xl md:text-7xl font-serif mb-6 text-white">
@@ -155,47 +165,12 @@ export default function Home() {
               Selected Visual Legacies
             </p>
           </SectionWrapper>
-
-          <div className="grid md:grid-cols-3 gap-12">
-            {FEATURED_SHOTS.map((shot, idx) => (
-              <SectionWrapper key={shot.id} direction="up" delay={idx * 0.2}>
-                <div className="group relative aspect-[3/4] overflow-hidden rounded-[2.5rem] bg-zinc-900 mb-6 shadow-xl border border-white/5">
-                  <div className="absolute inset-0 shimmer" />
-                  <img
-                    src={shot.url}
-                    alt={shot.title}
-                    className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 relative z-10"
-                    onLoad={(e) => {
-                      (e.target as HTMLElement).previousElementSibling?.classList.add('opacity-0');
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-white/90 dark:bg-black/90 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center p-8 text-center backdrop-blur-[4px]">
-                    <div>
-                      <h4 className="text-3xl font-serif text-white mb-6 italic">
-                        {shot.title}
-                      </h4>
-                      <Link
-                        href="/gallery"
-                        className="px-8 py-3 glass text-white rounded-full uppercase text-[10px] tracking-[0.2em] hover:bg-white/10 transition-all border border-white/10"
-                      >
-                        View Gallery
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center px-4">
-                  <h3 className="text-xl font-serif tracking-tight text-white">
-                    {shot.title}
-                  </h3>
-                  <p className="text-[10px] text-yellow-600 uppercase tracking-[0.2em] font-bold">
-                    {shot.date}
-                  </p>
-                </div>
-              </SectionWrapper>
-            ))}
-          </div>
         </div>
       </section>
+
+      <div className="mx-4 bg-[#0A0A0A] rounded-b-[4rem] mb-20">
+        <HorizontalGallery items={FEATURED_SHOTS} />
+      </div>
 
       {/* Why Us Cards */}
       <section className="py-40 px-6 overflow-hidden">
@@ -260,12 +235,14 @@ export default function Home() {
           </p>
 
           <div className="flex justify-center w-full">
-            <Link
-              href="/book"
-              className="px-16 py-7 rounded-full bg-yellow-600 text-white uppercase tracking-[0.4em] font-bold text-[10px] glow-button transition-all hover:scale-105 active:scale-95"
-            >
-              Book a Consultation
-            </Link>
+            <MagneticButton distance={0.3}>
+              <Link
+                href="/book"
+                className="px-16 py-7 rounded-full bg-yellow-600 text-white uppercase tracking-[0.4em] font-bold text-[10px] glow-button transition-all hover:scale-105 active:scale-95 magnetic-target"
+              >
+                Book a Consultation
+              </Link>
+            </MagneticButton>
           </div>
         </SectionWrapper>
       </section>
