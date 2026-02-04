@@ -120,6 +120,19 @@ export const Contact: React.FC = () => {
                   />
                 </div>
 
+                <div className="flex items-start gap-4 text-[10px] text-gray-500 dark:text-gray-400">
+                  <input
+                    type="checkbox"
+                    required
+                    className="mt-1 w-4 h-4 rounded border-black/10 dark:border-white/10 accent-yellow-600"
+                  />
+                  <p className="leading-relaxed">
+                    I agree to the collection and processing of my personal data as outlined in the{" "}
+                    <a href="/privacy-policy" className="text-yellow-600 underline">Privacy Policy</a> and{" "}
+                    <a href="/terms-of-service" className="text-yellow-600 underline">Terms of Service</a>.
+                  </p>
+                </div>
+
                 <button className="w-full py-6 rounded-full bg-[#1A1A1A] dark:bg-white text-white dark:text-black uppercase tracking-[0.4em] font-bold text-[10px] hover:scale-[1.02] transition-transform shadow-2xl glow-button">
                   Send Inquiry
                 </button>

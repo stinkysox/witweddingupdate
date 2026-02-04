@@ -132,6 +132,19 @@ export const Book: React.FC = () => {
                     />
                   </div>
 
+                  <div className="flex items-start gap-4 py-4 text-xs text-gray-500">
+                    <input
+                      type="checkbox"
+                      required
+                      className="mt-1 w-4 h-4 rounded border-white/20 accent-yellow-600"
+                    />
+                    <p className="leading-relaxed">
+                      I agree to the processing of my details as per the{" "}
+                      <a href="/privacy-policy" className="text-yellow-600 underline">Privacy Policy</a> and{" "}
+                      <a href="/terms-of-service" className="text-yellow-600 underline">Terms of Service</a>.
+                    </p>
+                  </div>
+
                   <button
                     type="submit"
                     className="w-full py-5 rounded-full bg-yellow-600 text-white uppercase tracking-[0.2em] font-bold text-sm glow-button transition-all hover:bg-yellow-500"

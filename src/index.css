@@ -10,6 +10,14 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* No global overflow-x: hidden/clip here as it breaks position: sticky */
+  }
+
   body {
     font-family: "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -43,7 +51,6 @@
   /* Specifically protect images from being "Saved" or "Opened in New Tab" on long-press */
   img {
     -webkit-touch-callout: none;
-    user-drag: none;
     -webkit-user-drag: none;
   }
 }

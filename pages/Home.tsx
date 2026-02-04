@@ -39,71 +39,16 @@ const FEATURED_SHOTS = [
   },
 ];
 
-const BENTO_ITEMS = [
-  {
-    id: 1,
-    url: "https://i.pinimg.com/736x/b5/23/b3/b523b3e8a7410b20dedbac7491a528af.jpg",
-    title: "Where Forever Begins",
-    category: "The Union",
-    span: "md:col-span-3 md:row-span-4",
-  },
-  {
-    id: 2,
-    url: "https://i.pinimg.com/736x/ba/63/52/ba63529729f2cc61dbac103f6f7bb238.jpg",
-    title: "Details of a Promise",
-    category: "Wedding Details",
-    span: "md:col-span-1 md:row-span-2",
-  },
-  {
-    id: 3,
-    url: "https://i.pinimg.com/736x/00/bd/a0/00bda06b701af0b5ee56538e55312a06.jpg",
-    title: "A Quiet Yes",
-    category: "Intimate Moments",
-    span: "md:col-span-2 md:row-span-3",
-  },
-  {
-    id: 4,
-    url: "https://i.pinimg.com/1200x/70/7c/74/707c741bd1aa9d0c154f81f2bc089bd8.jpg",
-    title: "Soft Vows & Silhouettes",
-    category: "Romantic Textures",
-    span: "md:col-span-2 md:row-span-2",
-  },
-  {
-    id: 5,
-    url: "https://i.pinimg.com/1200x/b8/9c/5f/b89c5f5d181450d685871a21d76d60ae.jpg",
-    title: "Dancing Into Forever",
-    category: "Celebration",
-    span: "md:col-span-1 md:row-span-2",
-  },
-  {
-    id: 6,
-    url: "https://i.pinimg.com/736x/2d/04/16/2d04167fb5b1b086548758f5f08bf8c4.jpg",
-    title: "Eyes That Say Everything",
-    category: "Love & Portraits",
-    span: "md:col-span-2 md:row-span-2",
-  },
-  {
-    id: 7,
-    url: "https://i.pinimg.com/736x/3a/0e/0c/3a0e0c89e90e0caf232ca5f2bd30ea9d.jpg",
-    title: "Petals & Promises",
-    category: "Wedding Decor",
-    span: "md:col-span-1 md:row-span-2",
-  },
-  {
-    id: 8,
-    url: "https://i.pinimg.com/736x/43/ea/c0/43eac0aed202d47c88a0715a1c56af64.jpg",
-    title: "The Place We Said Yes",
-    category: "Wedding Venue",
-    span: "md:col-span-3 md:row-span-2",
-  },
-];
+// BubbleScroll component handles these items now
+
+import { BubbleScroll } from "../src/components/BubbleScroll";
 
 export const Home: React.FC = () => {
   const { scrollY } = useScroll();
   const heroContentY = useTransform(scrollY, [0, 500], [0, 100]);
 
   return (
-    <div className="overflow-hidden bg-white dark:bg-[#050505]">
+    <div className="w-full min-h-screen bg-white dark:bg-[#050505]">
       {/* Aurora Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <AuroraBackground />
@@ -194,77 +139,9 @@ export const Home: React.FC = () => {
           </SectionWrapper>
         </div>
       </section>
-      <section className="py-24 px-4 md:px-8 bg-white dark:bg-[#050505]">
-        <div className="max-w-[1600px] mx-auto">
-          <SectionWrapper
-            direction="up"
-            className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 px-4"
-          >
-            <div className="max-w-2xl">
-              <h3 className="text-gray-400 uppercase tracking-[0.3em] text-[10px] font-bold mb-4">
-                The Collection
-              </h3>
-              <h2 className="text-5xl md:text-7xl font-serif text-[#1A1A1A] dark:text-white leading-tight">
-                Moments worth <br />
-                <span className="italic text-yellow-600 font-normal">
-                  Remembering.
-                </span>
-              </h2>
-            </div>
 
-            <p className="text-gray-500 dark:text-gray-400 font-light text-sm max-w-sm md:text-right leading-relaxed mb-4">
-              A curated selection of visual echoes. From the grand architecture
-              of a venue to the subtle lace of a veil, every pixel tells a
-              story.
-            </p>
-          </SectionWrapper>
-
-          {/* Bento Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-5 auto-rows-[120px] md:auto-rows-[160px]">
-            {BENTO_ITEMS.map((item, idx) => (
-              <SectionWrapper
-                key={item.id}
-                direction="up"
-                delay={idx * 0.05}
-                className={`${item.span} group relative overflow-hidden rounded-2xl md:rounded-[2.5rem] bg-gray-100 dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 shadow-sm hover:shadow-2xl transition-all duration-500`}
-              >
-                <img
-                  src={item.url}
-                  alt={`${item.title} – Wedding photography by Weddingwit`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-110 grayscale-[10%] group-hover:grayscale-0"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-5 md:p-8 backdrop-blur-[2px] pointer-events-none">
-                  <motion.span
-                    className="text-yellow-500 uppercase tracking-[0.4em] text-[8px] md:text-[10px] font-bold mb-2 block"
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                  >
-                    {item.category}
-                  </motion.span>
-
-                  <motion.h4
-                    className="text-lg md:text-2xl font-serif text-white italic leading-tight"
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    {item.title}
-                  </motion.h4>
-                </div>
-
-                {/* Elegant Border */}
-                <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/10 rounded-2xl md:rounded-[2.5rem] pointer-events-none group-hover:ring-white/20 transition-all" />
-              </SectionWrapper>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Bubble Scroll Section (Replaces Bento Grid) */}
+      <BubbleScroll />
 
       {/* Featured Gallery */}
       <section className="py-32 bg-gray-50 dark:bg-[#0A0A0A] rounded-[4rem] mx-4">

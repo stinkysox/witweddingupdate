@@ -176,6 +176,10 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} Weddingwit Artistry Archive. All
             Visual Content Protected.
           </div>
+          <div className="flex gap-8 text-[9px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-light">
+            <Link to="/privacy-policy" className="hover:text-yellow-600 transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-yellow-600 transition-colors">Terms of Service</Link>
+          </div>
           <div className="text-[9px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-light">
             Legacies Crafted Globally. Headquartered in Hyderabad, India.
           </div>
