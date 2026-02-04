@@ -46,6 +46,13 @@ const FEATURED_SHOTS = [
     category: "Maternity",
     date: "2023",
   },
+  {
+    id: "4",
+    url: "https://i.pinimg.com/736x/8d/68/7c/8d687ca0c53869d80c3569766d78709a.jpg",
+    title: "Shadows of Love",
+    category: "Candid",
+    date: "2024",
+  },
 ];
 
 export default function Home() {
@@ -155,13 +162,13 @@ export default function Home() {
       </div>
 
       {/* Featured Gallery (Horizontal) */}
-      <section className="py-32 bg-[#0A0A0A] rounded-t-[4rem] mx-4 mb-0">
+      <section className="pt-32 pb-0 bg-[#0A0A0A] rounded-t-[4rem] mx-4 mb-0">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionWrapper direction="up" className="text-center mb-24">
+          <SectionWrapper direction="up" className="text-center mb-12">
             <h2 className="text-5xl md:text-7xl font-serif mb-6 text-white">
               Featured Works
             </h2>
-            <p className="premium-label">
+            <p className="premium-label py-4">
               Selected Visual Legacies
             </p>
           </SectionWrapper>
