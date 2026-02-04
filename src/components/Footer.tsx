@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const SocialIcon: React.FC<{
   href: string;
@@ -113,25 +113,25 @@ export const Footer: React.FC = () => {
             </h3>
             <nav className="flex flex-col gap-4 text-xs uppercase tracking-[0.5em] font-medium text-gray-400 dark:text-zinc-500">
               <Link
-                to="/"
+                href="/"
                 className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
               >
                 The Studio Home
               </Link>
               <Link
-                to="/about"
+                href="/about"
                 className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
               >
                 Our Philosophy
               </Link>
               <Link
-                to="/gallery"
+                href="/gallery"
                 className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
               >
                 The Portfolio
               </Link>
               <Link
-                to="/book"
+                href="/book"
                 className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
               >
                 Reserve Dates
@@ -177,8 +177,8 @@ export const Footer: React.FC = () => {
             Visual Content Protected.
           </div>
           <div className="flex gap-8 text-[9px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-light">
-            <Link to="/privacy-policy" className="hover:text-yellow-600 transition-colors">Privacy Policy</Link>
-            <Link to="/terms-of-service" className="hover:text-yellow-600 transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="hover:text-yellow-600 transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="hover:text-yellow-600 transition-colors">Terms of Service</Link>
           </div>
           <div className="text-[9px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-light">
             Legacies Crafted Globally. Headquartered in Hyderabad, India.

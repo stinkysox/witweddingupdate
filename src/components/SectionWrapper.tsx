@@ -1,3 +1,4 @@
+"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -28,7 +29,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
       transition: {
         duration: 1.2,
         delay,
-        ease: [0.16, 1, 0.3, 1], // Custom elegant cubic-bezier
+        ease: [0.16, 1, 0.3, 1] as any, // Custom elegant cubic-bezier
       }
     }
   };
