@@ -3,29 +3,29 @@ import { SectionWrapper } from "../src/components/SectionWrapper";
 
 export const Contact: React.FC = () => {
   return (
-    <div className="pt-32 pb-24 px-6 min-h-screen bg-white dark:bg-[#050505] text-gray-900 dark:text-white">
-      <div className="max-w-7xl mx-auto">
+    <div className="pt-32 pb-24 px-6 min-h-screen bg-white dark:bg-[#050505] text-gray-900 dark:text-white overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full">
         <SectionWrapper className="mb-24">
           <span className="text-yellow-600 uppercase tracking-[0.5em] text-[10px] font-bold mb-4 block">
             Inquiries
           </span>
-          <h1 className="text-6xl md:text-9xl font-serif mb-6 italic leading-none tracking-tighter">
+          <h1 className="text-5xl sm:text-6xl md:text-9xl font-serif mb-6 italic leading-none tracking-tighter">
             Connect.
           </h1>
-          <p className="text-xl text-gray-500 dark:text-gray-400 font-light max-w-2xl">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 font-light max-w-2xl">
             Available for commissions globally. We only accept a select number
             of stories each year to ensure our signature quality.
           </p>
         </SectionWrapper>
 
-        <div className="grid md:grid-cols-2 gap-24">
+        <div className="grid md:grid-cols-2 gap-20">
           <SectionWrapper direction="left">
             <div className="space-y-16">
               <div>
                 <h3 className="text-[10px] uppercase tracking-[0.4em] text-yellow-600 font-bold mb-6">
                   The Studio
                 </h3>
-                <p className="text-3xl font-serif leading-snug">
+                <p className="text-2xl md:text-3xl font-serif leading-snug">
                   Block 42, The Deccan Quarter
                   <br />
                   Jubilee Hills, Hyderabad
@@ -37,7 +37,7 @@ export const Contact: React.FC = () => {
                 <h3 className="text-[10px] uppercase tracking-[0.4em] text-yellow-600 font-bold mb-6">
                   Communication
                 </h3>
-                <p className="text-3xl font-serif leading-snug italic">
+                <p className="text-2xl md:text-3xl font-serif leading-snug italic break-words">
                   archives@weddingwit.com
                   <br />
                   +91 (0) 40 4567 8910
@@ -47,7 +47,7 @@ export const Contact: React.FC = () => {
                 <h3 className="text-[10px] uppercase tracking-[0.4em] text-yellow-600 font-bold mb-6">
                   Social Narrative
                 </h3>
-                <div className="flex gap-12 text-2xl font-serif italic">
+                <div className="flex flex-wrap gap-6 md:gap-12 text-xl md:text-2xl font-serif italic">
                   <a
                     href="#"
                     className="hover:text-yellow-600 transition-all duration-500 border-b border-transparent hover:border-yellow-600/30"
@@ -72,7 +72,7 @@ export const Contact: React.FC = () => {
           </SectionWrapper>
 
           <SectionWrapper direction="right">
-            <div className="glass p-12 md:p-16 rounded-[4rem] border border-black/5 dark:border-white/5 relative overflow-hidden group">
+            <div className="glass p-8 md:p-16 rounded-[3rem] md:rounded-[4rem] border border-black/5 dark:border-white/5 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-600/5 rounded-full blur-3xl group-hover:bg-yellow-600/10 transition-colors duration-1000"></div>
 
               <form className="space-y-10 relative z-10">

@@ -61,7 +61,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl md:text-9xl font-serif text-[#1A1A1A] dark:text-white mb-8 tracking-tighter leading-[1.1] md:leading-none"
+            className="text-3xl sm:text-7xl md:text-9xl font-serif text-[#1A1A1A] dark:text-white mb-8 tracking-tighter leading-[1.1] md:leading-none"
           >
             Capturing the <br />
             <span className="italic text-yellow-600 dark:text-yellow-500">
@@ -106,7 +106,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Intro Section */}
-      <section className="py-40 px-6 max-w-7xl mx-auto bg-white dark:bg-[#050505]">
+      <section className="py-40 px-6 max-w-7xl mx-auto bg-white dark:bg-[#050505] overflow-hidden">
         <div className="grid md:grid-cols-2 gap-32 items-center">
           <SectionWrapper direction="left">
             <h2 className="text-4xl md:text-7xl font-serif mb-10 leading-none tracking-tight text-[#1A1A1A] dark:text-white">
