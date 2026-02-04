@@ -105,6 +105,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased selection:bg-yellow-600/30 font-sans`}
+        suppressHydrationWarning
       >
         <CustomCursor />
         <div className="flex flex-col min-h-screen relative">
