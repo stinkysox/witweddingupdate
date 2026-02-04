@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   keywords: "wedding photography Hyderabad, luxury wedding photographer, cinematic wedding films, destination wedding photographer India, premium wedding stories",
   authors: [{ name: "Weddingwit Artistry Archive" }],
   robots: "index, follow",
+  verification: {
+    google: "b0fe91c686917fde",
+  },
   alternates: {
     canonical: "https://weddingwit.vercel.app",
   },
