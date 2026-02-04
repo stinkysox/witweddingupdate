@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useMotionValue, MotionValue } from "framer-motion";
 
 interface BubbleConfig {
   url: string;
@@ -17,8 +17,15 @@ const Bubble: React.FC<{ config: BubbleConfig; progress: MotionValue<number>; in
   progress,
   index,
 }) => {
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const responsiveSize = isMobile ? config.size * 0.45 : config.size;
+  const [mounted, setMounted] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  const responsiveSize = (mounted && isMobile) ? config.size * 0.45 : config.size;
 
   const start = config.range[0];
   const end = config.range[1];
@@ -29,14 +36,14 @@ const Bubble: React.FC<{ config: BubbleConfig; progress: MotionValue<number>; in
   const scale = useTransform(progress, [start, mid, end], [0.6, 1.8, 0.6]);
   
   // Drift values
-  const driftX = useTransform(progress, [start, end], ["0%", (isMobile ? config.drift.x * 0.2 : config.drift.x) + "%"]);
-  const driftY = useTransform(progress, [start, end], ["0%", (isMobile ? config.drift.y * 0.4 : config.drift.y) + "%"]);
+  const driftX = useTransform(progress, [start, end], ["0%", ((mounted && isMobile) ? config.drift.x * 0.2 : config.drift.x) + "%"]);
+  const driftY = useTransform(progress, [start, end], ["0%", ((mounted && isMobile) ? config.drift.y * 0.4 : config.drift.y) + "%"]);
 
   const springScale = useSpring(scale, { stiffness: 60, damping: 25 });
   const springX = useSpring(driftX, { stiffness: 45, damping: 20 });
   const springY = useSpring(driftY, { stiffness: 45, damping: 20 });
 
-  const responsiveLeft = isMobile
+  const responsiveLeft = (mounted && isMobile)
     ? `calc(${config.x} * 0.6 + 20%)`
     : config.x;
 
@@ -71,6 +78,100 @@ const Bubble: React.FC<{ config: BubbleConfig; progress: MotionValue<number>; in
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 pointer-events-none" />
       </motion.div>
     </div>
+  );
+};
+
+const ScrollIndicator: React.FC<{ progress: MotionValue<number> }> = ({ progress }) => {
+  const [mounted, setMounted] = React.useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 150 };
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
+
+  React.useEffect(() => setMounted(true), []);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+    x.set((clientX - centerX) * 0.4);
+    y.set((clientY - centerY) * 0.4);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const opacity = useTransform(progress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);
+  const rotate = useTransform(progress, [0, 1], [0, 360]);
+
+  if (!mounted) return null;
+
+  return (
+    <motion.div
+      style={{ opacity }}
+      className="absolute bottom-12 right-12 md:right-24 z-50 flex flex-col items-center gap-4 pointer-events-auto"
+    >
+      <div
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="relative w-20 h-20 flex items-center justify-center cursor-pointer group"
+      >
+        <motion.div
+          style={{ x: springX, y: springY }}
+          className="relative w-full h-full flex items-center justify-center"
+        >
+          {/* Progress Ring */}
+          <svg className="w-full h-full -rotate-90">
+            <circle
+              cx="40"
+              cy="40"
+              r="36"
+              fill="none"
+              stroke="white"
+              strokeWidth="0.5"
+              className="opacity-10"
+            />
+            <motion.circle
+              cx="40"
+              cy="40"
+              r="36"
+              fill="none"
+              stroke="#ca8a04" // yellow-600
+              strokeWidth="1.5"
+              strokeDasharray="226"
+              style={{
+                pathLength: progress,
+              }}
+              className="transition-all duration-300"
+            />
+          </svg>
+
+          {/* Pulsing Core */}
+          <div className="absolute inset-0 flex items-center justify-center">
+             <div className="w-1.5 h-1.5 bg-yellow-600 rounded-full shadow-[0_0_12px_rgba(202,138,4,0.6)] animate-pulse" />
+          </div>
+
+          {/* Magnetic text label */}
+          <motion.div 
+            style={{ rotate }}
+            className="absolute inset-0 rounded-full border border-dashed border-white/5 group-hover:border-yellow-600/20 transition-colors" 
+          />
+        </motion.div>
+      </div>
+
+      <div className="flex flex-col items-center gap-1.5">
+         <span className="text-[9px] uppercase tracking-[0.5em] font-bold text-yellow-600/70">Scroll</span>
+         <div className="w-px h-6 bg-gradient-to-b from-yellow-600/60 to-transparent" />
+      </div>
+    </motion.div>
   );
 };
 
@@ -166,6 +267,9 @@ export const BubbleScroll: React.FC = () => {
             <Bubble key={i} config={bubble} progress={scrollYProgress} index={i} />
           ))}
         </div>
+
+        {/* Interactive Scroll Indicator */}
+        <ScrollIndicator progress={scrollYProgress} />
       </div>
     </section>
   );

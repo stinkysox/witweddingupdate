@@ -59,9 +59,9 @@ export const HorizontalGallery: React.FC<HorizontalGalleryProps> = ({ items = DE
   const scrollHeight = `${Math.max(200, (items.length + 1) * 80)}vh`;
   
   // Calculate horizontal translation. 
-  // We want to scroll until the end card is fully visible.
-  // For 4 items plus end card, -80% to -85% is a safer range.
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${Math.min(85, (items.length) * 20)}%`]);
+  // For 4 items plus end card, we need to scroll significantly.
+  // On very narrow screens (320px-360px), we need to reach ~85-90% translation.
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${Math.min(90, (items.length) * 22)}%`]);
 
   // Derived progress and opacity for the indicators
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);

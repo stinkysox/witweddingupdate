@@ -48,7 +48,7 @@ const FEATURED_SHOTS = [
   },
   {
     id: "4",
-    url: "https://i.pinimg.com/736x/8d/68/7c/8d687ca0c53869d80c3569766d78709a.jpg",
+    url: "https://i.pinimg.com/1200x/69/0f/96/690f96f1ff0dc1388171aeefcb34b8ae.jpg",
     title: "Shadows of Love",
     category: "Candid",
     date: "2024",
@@ -241,11 +241,11 @@ export default function Home() {
             unique visual potential. We would be honored to tell yours.
           </p>
 
-          <div className="flex justify-center w-full">
-            <MagneticButton distance={0.3}>
+          <div className="flex justify-center w-full px-4 sm:px-0">
+            <MagneticButton distance={0.3} className="w-full sm:w-auto">
               <Link
                 href="/book"
-                className="px-16 py-7 rounded-full bg-yellow-600 text-white uppercase tracking-[0.4em] font-bold text-[10px] glow-button transition-all hover:scale-105 active:scale-95 magnetic-target"
+                className="block sm:inline-block px-10 md:px-16 py-6 md:py-7 rounded-full bg-yellow-600 text-white uppercase tracking-[0.4em] font-bold text-[9px] md:text-[10px] glow-button transition-all hover:scale-105 active:scale-95 magnetic-target text-center shadow-xl shadow-yellow-600/20"
               >
                 Book a Consultation
               </Link>
