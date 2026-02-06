@@ -6,7 +6,6 @@ import Link from "next/link";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { BubbleScroll } from "../components/BubbleScroll";
 import { MagneticButton } from "../components/MagneticButton";
-import { HorizontalGallery } from "../components/HorizontalGallery";
 import Image from "next/image";
 
 const AuroraBackground = () => (
@@ -23,37 +22,6 @@ const AuroraBackground = () => (
     <div className="absolute inset-0 bg-white/10 dark:bg-black/20 backdrop-blur-[4px]" />
   </div>
 );
-
-const FEATURED_SHOTS = [
-  {
-    id: "1",
-    url: "https://i.pinimg.com/736x/27/91/56/2791561897980a13a1d81eaee23db512.jpg",
-    title: "Eternal Vows",
-    category: "Wedding",
-    date: "2023",
-  },
-  {
-    id: "2",
-    url: "https://i.pinimg.com/1200x/3a/d2/cf/3ad2cf6a4a6791043e3ad2905ccb4f26.jpg",
-    title: "The Golden Hour",
-    category: "Pre-Wedding",
-    date: "2024",
-  },
-  {
-    id: "3",
-    url: "https://i.pinimg.com/736x/31/68/b8/3168b8366b5fdc168b262603d2018024.jpg",
-    title: "Minimal Elegance",
-    category: "Maternity",
-    date: "2023",
-  },
-  {
-    id: "4",
-    url: "https://i.pinimg.com/1200x/69/0f/96/690f96f1ff0dc1388171aeefcb34b8ae.jpg",
-    title: "Shadows of Love",
-    category: "Candid",
-    date: "2024",
-  },
-];
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -156,27 +124,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Bubble Scroll Section (Replaces Bento Grid) */}
-      <div className="relative z-10">
+      {/* Bubble Scroll Section */}
+      <div className="relative z-10 mb-20">
         <BubbleScroll />
-      </div>
-
-      {/* Featured Gallery (Horizontal) */}
-      <section className="pt-32 pb-0 bg-[#0A0A0A] rounded-t-[4rem] mx-4 mb-0">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionWrapper direction="up" className="text-center mb-12">
-            <h2 className="text-5xl md:text-7xl font-serif mb-6 text-white">
-              Featured Works
-            </h2>
-            <p className="premium-label py-4">
-              Selected Visual Legacies
-            </p>
-          </SectionWrapper>
-        </div>
-      </section>
-
-      <div className="mx-4 bg-[#0A0A0A] rounded-b-[4rem] mb-20">
-        <HorizontalGallery items={FEATURED_SHOTS} />
       </div>
 
       {/* Why Us Cards */}
