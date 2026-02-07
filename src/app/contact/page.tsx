@@ -2,21 +2,23 @@
 
 import React from "react";
 import { SectionWrapper } from "../../components/SectionWrapper";
+import { siteContent } from "../../data/siteContent";
 
 export default function Contact() {
+  const { contact } = siteContent;
+
   return (
     <div className="pt-32 pb-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
         <SectionWrapper className="mb-24">
           <span className="premium-label mb-4 block">
-            Inquiries
+            {contact.hero.label}
           </span>
           <h1 className="text-5xl sm:text-6xl md:text-9xl font-serif mb-6 italic leading-none tracking-tighter text-white">
-            Connect.
+            {contact.hero.title}
           </h1>
           <p className="premium-para text-lg md:text-xl max-w-2xl">
-            Available for commissions globally. We only accept a select number
-            of stories each year to ensure our signature quality.
+            {contact.hero.description}
           </p>
         </SectionWrapper>
 
@@ -25,49 +27,41 @@ export default function Contact() {
             <div className="space-y-16">
               <div>
                 <h3 className="text-[10px] uppercase tracking-[0.4em] text-yellow-600 font-bold mb-6">
-                  The Studio
+                  {contact.info.studio.title}
                 </h3>
                 <p className="text-2xl md:text-3xl font-serif leading-snug text-white">
-                  Block 42, The Deccan Quarter
-                  <br />
-                  Jubilee Hills, Hyderabad
-                  <br />
-                  Telangana, 500033
+                  {contact.info.studio.details.map((detail, i) => (
+                    <React.Fragment key={i}>
+                      {detail}
+                      {i < contact.info.studio.details.length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
                 </p>
               </div>
               <div>
                 <h3 className="text-[10px] uppercase tracking-[0.4em] text-yellow-600 font-bold mb-6">
-                  Communication
+                  {contact.info.communication.title}
                 </h3>
                 <p className="text-2xl md:text-3xl font-serif leading-snug italic break-words text-white">
-                  archives@weddingwit.com
+                  {contact.info.communication.email}
                   <br />
-                  +91 (0) 40 4567 8910
+                  {contact.info.communication.phone}
                 </p>
               </div>
               <div>
                 <h3 className="text-[10px] uppercase tracking-[0.4em] text-yellow-600 font-bold mb-6">
-                  Social Narrative
+                  {contact.info.social.title}
                 </h3>
                 <div className="flex flex-wrap gap-6 md:gap-12 text-xl md:text-2xl font-serif italic text-white">
-                  <a
-                    href="#"
-                    className="hover:text-yellow-600 transition-all duration-500 border-b border-transparent hover:border-yellow-600/30"
-                  >
-                    Instagram
-                  </a>
-                  <a
-                    href="#"
-                    className="hover:text-yellow-600 transition-all duration-500 border-b border-transparent hover:border-yellow-600/30"
-                  >
-                    Vimeo
-                  </a>
-                  <a
-                    href="#"
-                    className="hover:text-yellow-600 transition-all duration-500 border-b border-transparent hover:border-yellow-600/30"
-                  >
-                    WhatsApp
-                  </a>
+                  {contact.info.social.links.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      className="hover:text-yellow-600 transition-all duration-500 border-b border-transparent hover:border-yellow-600/30"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -81,7 +75,7 @@ export default function Contact() {
                 <div className="grid grid-cols-2 gap-8">
                   <div className="space-y-2">
                     <label className="text-[8px] uppercase tracking-[0.3em] font-bold text-gray-400">
-                      First Name
+                      {contact.form.firstName}
                     </label>
                     <input
                       type="text"
@@ -91,7 +85,7 @@ export default function Contact() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-[8px] uppercase tracking-[0.3em] font-bold text-gray-400">
-                      Last Name
+                      {contact.form.lastName}
                     </label>
                     <input
                       type="text"
@@ -103,7 +97,7 @@ export default function Contact() {
 
                 <div className="space-y-2">
                   <label className="text-[8px] uppercase tracking-[0.3em] font-bold text-gray-400">
-                    Email Address
+                    {contact.form.email}
                   </label>
                   <input
                     type="email"
@@ -114,7 +108,7 @@ export default function Contact() {
 
                 <div className="space-y-2">
                   <label className="text-[8px] uppercase tracking-[0.3em] font-bold text-gray-400">
-                    Event Narrative
+                    {contact.form.message}
                   </label>
                   <textarea
                     placeholder="Tell us about the celebration..."
@@ -136,7 +130,7 @@ export default function Contact() {
                 </div>
 
                 <button className="w-full py-6 rounded-full bg-white text-black uppercase tracking-[0.4em] font-bold text-[10px] hover:scale-[1.02] transition-transform shadow-2xl glow-button">
-                  Send Inquiry
+                  {contact.form.submit}
                 </button>
               </form>
             </div>

@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionWrapper } from "../../components/SectionWrapper";
+import { siteContent } from "../../data/siteContent";
 
 export default function Book() {
   const [submitted, setSubmitted] = useState(false);
+  const { book } = siteContent;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,9 +22,11 @@ export default function Book() {
 
       <div className="max-w-4xl mx-auto relative z-10">
         <SectionWrapper direction="up" className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-serif mb-6 text-white">Reservation</h1>
+          <h1 className="text-5xl md:text-7xl font-serif mb-6 text-white">
+            {book.hero.title}
+          </h1>
           <p className="premium-label italic">
-            Let's craft your masterpiece together
+            {book.hero.subtitle}
           </p>
         </SectionWrapper>
 
@@ -41,7 +45,7 @@ export default function Book() {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-2">
                        <label className="text-xs uppercase tracking-widest opacity-60">
-                        Full Name
+                        {book.form.name}
                       </label>
                       <input
                         required
@@ -52,7 +56,7 @@ export default function Book() {
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-widest opacity-60">
-                        Email Address
+                        {book.form.email}
                       </label>
                       <input
                         required
@@ -66,7 +70,7 @@ export default function Book() {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-widest opacity-60">
-                        Event Date
+                        {book.form.date}
                       </label>
                       <input
                         required
@@ -76,34 +80,19 @@ export default function Book() {
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-widest opacity-60">
-                        Event Type
+                        {book.form.type}
                       </label>
                       <div className="relative">
                         <select className="w-full bg-black/20 border-b border-white/20 py-4 px-4 focus:border-yellow-600 outline-none transition-colors appearance-none cursor-pointer text-white rounded-t-lg backdrop-blur-sm">
-                          <option
-                            value="wedding"
-                            className="bg-transparent dark:bg-gray-900 text-gray-900 dark:text-gray-100"
-                          >
-                            Wedding Ceremony
-                          </option>
-                          <option
-                            value="pre-wedding"
-                            className="bg-gray-900 text-white"
-                          >
-                            Pre-Wedding
-                          </option>
-                          <option
-                            value="maternity"
-                            className="bg-transparent dark:bg-gray-900 text-gray-900 dark:text-gray-100"
-                          >
-                            Maternity
-                          </option>
-                          <option
-                            value="engagement"
-                            className="bg-gray-900 text-white"
-                          >
-                            Engagement
-                          </option>
+                          {book.eventTypes.map((type) => (
+                            <option
+                              key={type.value}
+                              value={type.value}
+                              className="bg-gray-900 text-white"
+                            >
+                              {type.label}
+                            </option>
+                          ))}
                         </select>
                         <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                           <svg
@@ -126,7 +115,7 @@ export default function Book() {
 
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest opacity-60">
-                      Tell us about your vision
+                      {book.form.vision}
                     </label>
                     <textarea
                       placeholder="Describe the mood, location, and your story..."
@@ -151,7 +140,7 @@ export default function Book() {
                     type="submit"
                     className="w-full py-5 rounded-full bg-yellow-600 text-white uppercase tracking-[0.2em] font-bold text-sm glow-button transition-all hover:bg-yellow-500"
                   >
-                    Request Consultation
+                    {book.form.submit}
                   </button>
                 </motion.form>
               ) : (
@@ -176,10 +165,11 @@ export default function Book() {
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
                   </div>
-                  <h2 className="text-4xl font-serif mb-4 text-white">Request Received</h2>
+                  <h2 className="text-4xl font-serif mb-4 text-white">
+                    {book.form.successTitle}
+                  </h2>
                   <p className="premium-para max-w-sm mx-auto !text-zinc-500">
-                    Thank you for considering us. Our boutique team will review
-                    your story and get back to you within 48 hours.
+                    {book.form.successMessage}
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}

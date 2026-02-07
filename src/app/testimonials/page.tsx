@@ -9,7 +9,6 @@ interface Testimonial {
   name: string;
   event: string;
   quote: string;
-  imageUrl: string;
 }
 
 const REVIEWS: Testimonial[] = [
@@ -19,8 +18,6 @@ const REVIEWS: Testimonial[] = [
     event: "The Palace Rites",
     quote:
       "They didn’t just document the day; they captured the soul of our silence. The way they filmed our Varmala sequence felt like a frame from a classic epic.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=400",
   },
   {
     id: "2",
@@ -28,8 +25,6 @@ const REVIEWS: Testimonial[] = [
     event: "The Heritage Reception",
     quote:
       "A masterclass in editorial cinematography. They managed to find quiet, intimate moments even amidst the beautiful chaos of our grand reception.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=400",
   },
   {
     id: "3",
@@ -37,8 +32,6 @@ const REVIEWS: Testimonial[] = [
     event: "The Royal Courtyard",
     quote:
       "The attention to detail—from the texture of the heirloom silk to the silent exchange of glances during the Pheras—was absolutely breathtaking.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1544161515-436ceea16598?auto=format&fit=crop&q=80&w=400",
   },
   {
     id: "4",
@@ -46,8 +39,6 @@ const REVIEWS: Testimonial[] = [
     event: "The Estate Celebration",
     quote:
       "Seamless, professional, and artistically superior. Weddingwit has a way of seeing light that feels almost supernatural. Our legacy is in safe hands.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1512101176959-c557f3516787?auto=format&fit=crop&q=80&w=400",
   },
 ];
 
@@ -103,27 +94,16 @@ export default function Testimonials() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="glass rounded-[3rem] p-10 md:p-16 border relative overflow-hidden cursor-pointer"
               >
-                <div className="flex items-center gap-6 mb-10 relative z-10">
-                  <div className="w-20 h-20 rounded-full overflow-hidden ring-1 ring-white/10 shadow-2xl">
-                    <motion.img
-                      animate={{ scale: isActive ? 1.1 : 1 }}
-                      transition={{ duration: 0.6 }}
-                      src={review.imageUrl}
-                      alt={review.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-serif text-white">
-                      {review.name}
-                    </h3>
-                    <motion.p
-                      animate={{ color: isActive ? "#ca8a04" : "#ca8a04" }}
-                      className="text-[10px] uppercase tracking-[0.3em] font-bold"
-                    >
-                      {review.event}
-                    </motion.p>
-                  </div>
+                <div className="flex flex-col items-start gap-2 mb-10 relative z-10">
+                  <h3 className="text-2xl font-serif text-white">
+                    {review.name}
+                  </h3>
+                  <motion.p
+                    animate={{ color: isActive ? "#ca8a04" : "#ca8a04" }}
+                    className="text-[10px] uppercase tracking-[0.3em] font-bold"
+                  >
+                    {review.event}
+                  </motion.p>
                 </div>
 
                 <motion.p

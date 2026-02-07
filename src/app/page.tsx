@@ -7,6 +7,8 @@ import { SectionWrapper } from "../components/SectionWrapper";
 import { BubbleScroll } from "../components/BubbleScroll";
 import { MagneticButton } from "../components/MagneticButton";
 import Image from "next/image";
+import { siteContent } from "../data/siteContent";
+import { TextReveal } from "../components/TextReveal";
 
 const AuroraBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-60 dark:opacity-40">
@@ -26,6 +28,7 @@ const AuroraBackground = () => (
 export default function Home() {
   const { scrollY } = useScroll();
   const heroContentY = useTransform(scrollY, [0, 500], [0, 100]);
+  const { home } = siteContent;
 
   return (
     <div className="w-full">
@@ -43,11 +46,11 @@ export default function Home() {
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-3xl sm:text-7xl md:text-9xl font-serif text-white mb-8 tracking-tighter leading-[1.1] md:leading-none"
           >
-            Capturing the <br />
+            {home.hero.title} <br />
             <span className="italic text-yellow-600 dark:text-yellow-500">
-              Soul
+              {home.hero.titleAccent}
             </span>{" "}
-            of Connection
+            {home.hero.titleEnd}
           </motion.h1>
 
           <motion.p
@@ -56,7 +59,7 @@ export default function Home() {
             transition={{ delay: 0.8, duration: 1.5 }}
             className="premium-label mb-12 px-4"
           >
-            Luxury Wedding Cinematography & Photography
+            {home.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -66,10 +69,10 @@ export default function Home() {
           >
             <MagneticButton>
               <Link
-                href="/gallery"
+                href={home.hero.ctaLink}
                 className="inline-block px-12 py-5 glass dark:text-white text-[#1A1A1A] rounded-full uppercase tracking-[0.2em] hover:bg-black/5 dark:hover:bg-white/10 transition-all text-[10px] font-bold glow-button border border-black/10 dark:border-white/10 shadow-lg magnetic-target"
               >
-                Explore Portfolio
+                {home.hero.cta}
               </Link>
             </MagneticButton>
           </motion.div>
@@ -92,19 +95,17 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-32 items-center">
           <SectionWrapper direction="left">
             <h2 className="text-4xl md:text-7xl font-serif mb-10 leading-none tracking-tight text-white">
-              Rooted in <br />
-              <span className="text-yellow-600 italic">Pure Emotion.</span>
+              {home.intro.title} <br />
+              <span className="text-yellow-600 italic">{home.intro.titleAccent}</span>
             </h2>
             <p className="premium-para mb-14 max-w-lg">
-              We weave visual narratives that stand the test of time. Weddingwit
-              is the junction where editorial high-fashion meets the raw,
-              unscripted beauty of human connection.
+              {home.intro.description}
             </p>
             <Link
-              href="/about"
+              href={home.intro.linkUrl}
               className="group flex items-center gap-8 text-[10px] uppercase tracking-[0.4em] font-bold dark:text-white"
             >
-              Our Philosophy
+              {home.intro.linkText}
               <span className="w-20 h-[1px] bg-black dark:bg-white group-hover:w-32 transition-all duration-700"></span>
             </Link>
           </SectionWrapper>
@@ -112,7 +113,7 @@ export default function Home() {
           <SectionWrapper direction="right" delay={0.2}>
             <div className="aspect-[4/5] overflow-hidden rounded-[3rem] relative shadow-2xl bg-zinc-900">
               <Image
-                src="https://i.pinimg.com/1200x/50/36/08/50360859203a51e5de8e30e934ab856d.jpg"
+                src={home.intro.image}
                 alt="Brand Intro"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -132,20 +133,7 @@ export default function Home() {
       {/* Why Us Cards */}
       <section className="py-40 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
-          {[
-            {
-              title: "Cinematic Approach",
-              desc: "Expert use of light, motion, and shadow to create a feature-film aesthetic for your memories.",
-            },
-            {
-              title: "Editorial Style",
-              desc: "Imagery tailored for the cover, blending high-fashion composition with raw intimacy.",
-            },
-            {
-              title: "Emotional Purity",
-              desc: "We capture the silent, unseen moments that carry the most weight in your story.",
-            },
-          ].map((item, idx) => (
+          {home.services.map((item, idx) => (
             <SectionWrapper key={idx} direction="up" delay={idx * 0.2}>
               <div className="p-16 rounded-[3rem] glass border border-white/5 h-full flex flex-col items-center text-center group hover:bg-yellow-600/5 transition-all duration-700 shadow-sm hover:shadow-xl">
                 <div className="w-16 h-16 rounded-full border border-yellow-600/20 flex items-center justify-center mb-10 group-hover:bg-yellow-600 group-hover:text-white transition-all duration-500">
@@ -183,21 +171,20 @@ export default function Home() {
           </div>
 
           <h2 className="text-5xl md:text-8xl font-serif mb-12 italic leading-none tracking-tighter text-[#1A1A1A] dark:text-white">
-            Let’s craft your <br /> masterpiece.
+            {home.finalCta.title}
           </h2>
 
           <p className="premium-para text-lg md:text-xl mb-16 max-w-2xl mx-auto !text-zinc-400">
-            Limited availability for 2024 & 2025. Each story is selected for its
-            unique visual potential. We would be honored to tell yours.
+            {home.finalCta.description}
           </p>
 
           <div className="flex justify-center w-full px-4 sm:px-0">
             <MagneticButton distance={0.3} className="w-full sm:w-auto">
               <Link
-                href="/book"
+                href={home.finalCta.buttonLink}
                 className="block sm:inline-block px-10 md:px-16 py-6 md:py-7 rounded-full bg-yellow-600 text-white uppercase tracking-[0.4em] font-bold text-[9px] md:text-[10px] glow-button transition-all hover:scale-105 active:scale-95 magnetic-target text-center shadow-xl shadow-yellow-600/20"
               >
-                Book a Consultation
+                {home.finalCta.buttonText}
               </Link>
             </MagneticButton>
           </div>

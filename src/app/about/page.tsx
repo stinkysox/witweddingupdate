@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "../../components/SectionWrapper";
 import Link from "next/link";
+import { siteContent } from "../../data/siteContent";
 
 export default function About() {
   const [isImageFocused, setIsImageFocused] = useState(false);
+  const { about } = siteContent;
 
   return (
     <div className="pt-32 pb-24 overflow-hidden">
@@ -17,15 +19,14 @@ export default function About() {
           animate={{ opacity: 1, y: 0 }}
           className="premium-label mb-6 block"
         >
-          Our Ethos
+          {about.hero.label}
         </motion.span>
         <h1 className="text-6xl md:text-9xl font-serif mb-10 leading-[0.85] tracking-tighter text-white">
-          Cinematic Soul, <br />
-          <span className="italic">Timeless Frame.</span>
+          {about.hero.title} <br />
+          <span className="italic">{about.hero.titleAccent}</span>
         </h1>
         <p className="premium-para text-xl md:text-2xl max-w-3xl mx-auto italic font-medium !text-zinc-300">
-          We are a creative house dedicated to documenting the quiet grandeur
-          and emotional legacies of the world's most beautiful celebrations.
+          {about.hero.description}
         </p>
       </SectionWrapper>
 
@@ -45,7 +46,7 @@ export default function About() {
                   scale: isImageFocused ? 1.05 : 1,
                 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-                src="https://i.pinimg.com/736x/f5/94/d1/f594d17e5bcd98234cd36a48f5b56a9a.jpg"
+                src={about.philosophy.image}
                 alt="Architecture"
                 className="w-full h-full object-cover"
               />
@@ -64,34 +65,25 @@ export default function About() {
 
           <SectionWrapper direction="right">
             <h2 className="text-4xl md:text-6xl font-serif mb-8 leading-tight text-white">
-              Beyond the <br />
-              Standard Frame.
+              {about.philosophy.title} <br />
+              {about.philosophy.titleAccent}
             </h2>
             <p className="premium-para text-lg mb-8">
-              Weddingwit was founded on a simple belief: wedding cinematography
-              should transcend the typical. We blend authentic documentary
-              storytelling with a sophisticated editorial aesthetic to create
-              films that feel like an archive of emotion.
+              {about.philosophy.text1}
             </p>
             <p className="premium-para text-lg">
-              Each story is a unique collaboration. We don't just capture
-              events; we capture the visual frequency that makes your connection
-              one of a kind.
+              {about.philosophy.text2}
             </p>
 
             <div className="mt-12 flex gap-8 border-t border-white/10 pt-12">
-              <div>
-                <p className="text-3xl font-serif italic mb-1">500+</p>
-                <p className="text-[10px] uppercase tracking-widest text-gray-400">
-                  Stories Archive
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-serif italic mb-1">全球</p>
-                <p className="text-[10px] uppercase tracking-widest text-gray-400">
-                  Global Reach
-                </p>
-              </div>
+              {about.philosophy.stats.map((stat, i) => (
+                <div key={i}>
+                  <p className="text-3xl font-serif italic mb-1">{stat.value}</p>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-400">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </SectionWrapper>
         </div>
@@ -102,28 +94,15 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionWrapper className="text-center mb-24">
             <h2 className="text-4xl md:text-7xl font-serif mb-6 text-white">
-              The Pillars
+              {about.pillars.title}
             </h2>
             <p className="premium-label italic">
-              The Weddingwit Standard
+              {about.pillars.label}
             </p>
           </SectionWrapper>
 
           <div className="grid md:grid-cols-3 gap-12">
-            {[
-              {
-                title: "Visual Poise",
-                desc: "A commitment to capturing the inherent grace and dignity of every subject, regardless of the setting.",
-              },
-              {
-                title: "Atmospheric Light",
-                desc: "Utilizing natural light and shadow to create imagery that feels like a classic cinematic masterpiece.",
-              },
-              {
-                title: "Editorial Curation",
-                desc: "A meticulous post-production process that treats your film as a piece of high-end editorial art.",
-              },
-            ].map((pillar, i) => (
+            {about.pillars.items.map((pillar, i) => (
               <SectionWrapper key={i} delay={i * 0.15}>
                 <motion.div
                   whileHover={{
@@ -151,26 +130,10 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <SectionWrapper direction="left" className="order-2 md:order-1">
             <h2 className="text-4xl md:text-6xl font-serif mb-8 leading-tight italic text-white">
-              The Archive
+              {about.archive.title}
             </h2>
             <div className="space-y-12">
-              {[
-                {
-                  step: "01",
-                  title: "Curation",
-                  desc: "We curate the most poignant moments, ensuring the narrative flow is as intentional as a feature film.",
-                },
-                {
-                  step: "02",
-                  title: "Authenticity",
-                  desc: "We focus on the raw, unscripted glances that carry the most emotional weight.",
-                },
-                {
-                  step: "03",
-                  title: "Legacy",
-                  desc: "Our end goal is an archive that remains as evocative fifty years from now as it is today.",
-                },
-              ].map((item, i) => (
+              {about.archive.items.map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0.5 }}
@@ -203,7 +166,7 @@ export default function About() {
                 className="aspect-[4/5] rounded-[2rem] overflow-hidden translate-y-12 shadow-xl"
               >
                 <img
-                  src="https://i.pinimg.com/736x/79/21/c2/7921c220ea25456868c005d8b4ef808c.jpg"
+                  src={about.archive.images[0]}
                   alt="Detail 1"
                   className="w-full h-full object-cover"
                 />
@@ -215,7 +178,7 @@ export default function About() {
                 className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl"
               >
                 <img
-                  src="https://i.pinimg.com/736x/5f/0e/07/5f0e070f0f88e6d9b78179f74267025a.jpg"
+                  src={about.archive.images[1]}
                   alt="Detail 2"
                   className="w-full h-full object-cover"
                 />
@@ -228,20 +191,20 @@ export default function About() {
       {/* Final CTA */}
       <SectionWrapper className="text-center px-6">
         <h2 className="text-4xl md:text-7xl font-serif mb-12 italic text-white">
-          Join the Legacy.
+          {about.cta.title}
         </h2>
         <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
           <Link
-            href="/gallery"
+            href={about.cta.primaryLink}
             className="px-12 py-5 rounded-full bg-yellow-600 text-white uppercase tracking-[0.2em] text-[10px] font-bold shadow-lg active:scale-95 transition-transform"
           >
-            The Portfolio
+            {about.cta.primaryButton}
           </Link>
           <Link
-            href="/book"
+            href={about.cta.secondaryLink}
             className="px-12 py-5 rounded-full border border-white/10 uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-white/5 active:scale-95 transition-all text-white"
           >
-            Book a Consultation
+            {about.cta.secondaryButton}
           </Link>
         </div>
       </SectionWrapper>

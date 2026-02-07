@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { siteContent } from "../data/siteContent";
 
 const SocialIcon: React.FC<{
   href: string;
@@ -27,15 +28,14 @@ export const Footer: React.FC = () => {
           {/* Brand Identity Column */}
           <div className="md:col-span-1 space-y-8">
             <h2 className="text-4xl font-serif tracking-tighter">
-              Weddingwit.
+              {siteContent.brand.name}.
             </h2>
             <p className="text-gray-500 dark:text-gray-400 text-[11px] leading-relaxed uppercase tracking-[0.4em] font-light max-w-xs">
-              A bespoke visual boutique for the modern romantic. Archiving the
-              soul of connection from our base in Hyderabad to the world's most
-              beautiful stages.
+              {siteContent.footer.description}
             </p>
             <div className="flex flex-wrap gap-4">
-              <SocialIcon href="https://instagram.com" label="Instagram">
+              {/* Instagram */}
+              <SocialIcon href={siteContent.footer.socials[0].url} label="Instagram">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -52,7 +52,8 @@ export const Footer: React.FC = () => {
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                 </svg>
               </SocialIcon>
-              <SocialIcon href="https://youtube.com" label="YouTube">
+              {/* YouTube */}
+              <SocialIcon href={siteContent.footer.socials[1].url} label="YouTube">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -68,7 +69,8 @@ export const Footer: React.FC = () => {
                   <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
                 </svg>
               </SocialIcon>
-              <SocialIcon href="https://wa.me/914045678910" label="WhatsApp">
+              {/* WhatsApp */}
+              <SocialIcon href={siteContent.footer.socials[2].url} label="WhatsApp">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -86,7 +88,8 @@ export const Footer: React.FC = () => {
                   <path d="M9 12h6" />
                 </svg>
               </SocialIcon>
-              <SocialIcon href="https://pinterest.com" label="Pinterest">
+              {/* Pinterest */}
+              <SocialIcon href={siteContent.footer.socials[3].url} label="Pinterest">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -112,30 +115,15 @@ export const Footer: React.FC = () => {
               The Directory
             </h3>
             <nav className="flex flex-col gap-4 text-xs uppercase tracking-[0.5em] font-medium text-gray-400 dark:text-zinc-500">
-              <Link
-                href="/"
-                className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
-              >
-                The Studio Home
-              </Link>
-              <Link
-                href="/about"
-                className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
-              >
-                Our Philosophy
-              </Link>
-              <Link
-                href="/gallery"
-                className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
-              >
-                The Portfolio
-              </Link>
-              <Link
-                href="/book"
-                className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
-              >
-                Reserve Dates
-              </Link>
+              {siteContent.footer.directory.map((link) => (
+                <Link
+                  key={link.path}
+                  href={link.path}
+                  className="hover:text-yellow-600 dark:hover:text-yellow-500 transition-all duration-300 w-fit hover:translate-x-2"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </nav>
           </div>
 
@@ -146,12 +134,12 @@ export const Footer: React.FC = () => {
             </h3>
             <div className="space-y-4 text-sm font-serif italic text-gray-500 dark:text-zinc-400">
               <p className="hover:text-yellow-600 transition-colors duration-300 cursor-pointer">
-                archives@weddingwit.com
+                {siteContent.footer.contact.email}
               </p>
               <p className="hover:text-yellow-600 transition-colors duration-300 cursor-pointer">
-                +91 (0) 40 4567 8910
+                {siteContent.footer.contact.phone}
               </p>
-              <p>Jubilee Hills, Hyderabad</p>
+              <p>{siteContent.footer.contact.address}</p>
             </div>
           </div>
 
@@ -161,11 +149,10 @@ export const Footer: React.FC = () => {
               Archive Status
             </h3>
             <p className="text-base font-serif italic text-gray-500 dark:text-zinc-400 leading-relaxed">
-              Accepting exactly 12 commissions{" "}
-              <br className="hidden lg:block" /> worldwide for the 2025 season.
+              {siteContent.footer.availability.text}
             </p>
             <div className="inline-block px-4 py-2 rounded-full border border-yellow-600/20 text-[9px] uppercase tracking-widest text-yellow-600 font-bold">
-              Available Globally
+              {siteContent.footer.availability.status}
             </div>
           </div>
         </div>
@@ -173,15 +160,14 @@ export const Footer: React.FC = () => {
         {/* Bottom Metadata Bar */}
         <div className="pt-12 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-[9px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-light text-center md:text-left">
-            &copy; {new Date().getFullYear()} Weddingwit Artistry Archive. All
-            Visual Content Protected.
+            &copy; {new Date().getFullYear()} {siteContent.footer.copyright}
           </div>
           <div className="flex gap-8 text-[9px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-light">
             <Link href="/privacy-policy" className="hover:text-yellow-600 transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="hover:text-yellow-600 transition-colors">Terms of Service</Link>
           </div>
           <div className="text-[9px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-light">
-            Legacies Crafted Globally. Headquartered in Hyderabad, India.
+            {siteContent.footer.legacies}
           </div>
         </div>
       </div>

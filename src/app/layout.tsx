@@ -60,6 +60,7 @@ export const metadata: Metadata = {
 
 import { CustomCursor } from "../components/CustomCursor";
 import { CookieConsent } from "../components/CookieConsent";
+import { VinylPlayer } from "../components/VinylPlayer";
 
 export default function RootLayout({
   children,
@@ -120,6 +121,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <CustomCursor />
+        <VinylPlayer />
         <div className="flex flex-col min-h-screen relative">
           <Navbar />
           <main className="flex-grow">

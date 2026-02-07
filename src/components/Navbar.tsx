@@ -4,29 +4,22 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { siteContent } from "../data/siteContent";
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Testimonials", path: "/testimonials" },
-    { name: "Contact", path: "/contact" },
-  ];
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between glass-light rounded-full px-4 md:px-8 py-4 shadow-2xl">
         <Link href="/" className="text-2xl font-serif font-bold tracking-tight text-white">
-          Weddingwit<span className="text-yellow-600">.</span>
+          {siteContent.brand.name}<span className="text-yellow-600">.</span>
         </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-10">
-          {navLinks.map((link) => (
+          {siteContent.navbar.links.map((link) => (
             <Link
               key={link.path}
               href={link.path}
@@ -40,10 +33,10 @@ export const Navbar: React.FC = () => {
             </Link>
           ))}
           <Link
-            href="/book"
+            href={siteContent.navbar.cta.path}
             className="px-6 py-2 rounded-full bg-white text-black text-sm uppercase tracking-widest glow-button transition-all font-bold"
           >
-            Book Now
+            {siteContent.navbar.cta.text}
           </Link>
         </div>
 
@@ -76,7 +69,7 @@ export const Navbar: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-24 left-6 right-6 p-8 glass rounded-3xl md:hidden flex flex-col items-center space-y-6 shadow-2xl border border-white/10"
           >
-            {navLinks.map((link) => (
+            {siteContent.navbar.links.map((link) => (
               <Link
                 key={link.path}
                 href={link.path}
@@ -91,11 +84,11 @@ export const Navbar: React.FC = () => {
               </Link>
             ))}
             <Link
-              href="/book"
+              href={siteContent.navbar.cta.path}
               onClick={() => setIsOpen(false)}
               className="w-full text-center px-6 py-4 rounded-full bg-white text-black uppercase tracking-widest font-bold"
             >
-              Book Now
+              {siteContent.navbar.cta.text}
             </Link>
           </motion.div>
         )}
@@ -103,3 +96,4 @@ export const Navbar: React.FC = () => {
     </nav>
   );
 };
+
